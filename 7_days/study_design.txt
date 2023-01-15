@@ -1,0 +1,7 @@
+sample	group	Experiment	Sequencing_batch
+Control1	Control	2	2
+Control2	Control	2	2
+Control3	Control	2	2
+TSLP4	TSLP	2	2
+TSLP5	TSLP	2	2
+TSLP6	TSLP	2	2
