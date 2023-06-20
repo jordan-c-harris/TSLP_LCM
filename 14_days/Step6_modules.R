@@ -78,18 +78,23 @@ lwid = c(1.5,4)
 lhei = c(1.5,4,1)
 
 ## Initiate writing to PDF file
-pdf("heatmap_counts.pdf", height = 5, width = 6)
+pdf("heatmap_counts.pdf", height = 8, width = 8)
 
 ## Create a graphical object g here
-
-heatmap.2(diffGenes_05,
-          Rowv=as.dendrogram(clustRows_05),
+heatmap.2(diffGenes,
+          Rowv=as.dendrogram(clustRows),
           Colv=FALSE,
-          RowSideColors=module.color_05,
-          col=myheatcolors, scale='row', labRow=NA,
+          RowSideColors=module.color,
+          col=rev(myheatcolors), scale='row', labRow=NA,
           density.info="none", trace="none",
-          cexRow=1, cexCol=1, margins=c(8,10),
-          keysize = 1.5)
+          cexRow=1, cexCol=2.5, margins=c(10,10),
+          keysize = 2, adjCol = c(NA, 0.4),
+          key.title = "",
+          key.par = list(cex=1.5),
+          labCol = c("Control 1", "Control 2", "Control 3",
+                     "Control 4", "Control 5",
+                     "TSLP 1", "TSLP 2", "TSLP 3",
+                     "TSLP 4", "TSLP 5"))
 
 ## Stop writing to the PDF file
 dev.off()
@@ -108,7 +113,7 @@ diffGenes_05_of_interest <- diffGenes_05[genes_of_interest,]
 clustRows_of_interest <- hclust(as.dist(1-cor(t(diffGenes_05_of_interest), method="pearson")), method="complete")
 
 ## Initiate writing to PDF file
-pdf("heatmap_counts_subset.pdf", height = 10, width = 5)
+pdf("heatmap_counts_subset.pdf", height = 30, width = 10)
 
 ## Create a graphical object g here
 
@@ -116,10 +121,15 @@ heatmap.2(diffGenes_05_of_interest,
           Rowv=FALSE,
           Colv=FALSE,
           labRow = genes_of_interest,
-          col=myheatcolors, scale='row',
+          col=rev(myheatcolors), scale='row',
           density.info="none", trace="none",
-          cexRow=1, cexCol=1, margins=c(5,6),
-          key = FALSE)
+          cexRow=3, cexCol=4, margins=c(14,13),
+          adjCol = c(NA, 0.4),
+          key = FALSE,
+          labCol = c("Control 1", "Control 2", "Control 3",
+                     "Control 4", "Control 5",
+                     "TSLP 1", "TSLP 2", "TSLP 3",
+                     "TSLP 4", "TSLP 5"))
 
 ## Stop writing to the PDF file
 dev.off()
